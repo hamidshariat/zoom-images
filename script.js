@@ -2,27 +2,21 @@
     let defineLibrary = () => ({
         init : function(galleryId) {
             let container = document.querySelector(galleryId);
-
             if(! container) {
                 console.error('please add the correct element')
                 return;
             }
-
             let firstImage = container.querySelector('.small-preview')
             let zoomedImage = container.querySelector('.zoomed-image');
-
             if(! zoomedImage) {
                 console.error('please add a .zoomed-image tag');
                 return;
             }
-
             if(! firstImage) {
                 console.log('please add images with .small-preview class to your gallery');
                 return;
             }
-            
             zoomedImage.style.backgroundImage = `url(${firstImage.src})`
-
             container.addEventListener('click' , function(e) {
                 let elem = e.target;
 
@@ -35,7 +29,6 @@
             })
             zoomedImage.addEventListener('mousemove' , function(e) {
                 let dimentions = this.getBoundingClientRect()
-
                 let x = e.clientX - dimentions.left
                 let y = e.clientY - dimentions.top
                 x = Math.round(100/(dimentions.width / x));
@@ -48,7 +41,6 @@
             })
         }
     })
-
     if(typeof(vanillaZoom) == 'undefined') {
         window.vanillaZoom = defineLibrary();
     } else {
